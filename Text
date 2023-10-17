@@ -1,0 +1,194 @@
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string>res;
+        int n=words.size();
+        int i=0;
+        while(i<n){
+            int j=i+1;
+            int c=words[i].size();
+            int wc=words[i].size();
+            while(j<n&&c+words[j].size()+1<=maxWidth){
+                c+=words[j].size()+1;
+                wc+=words[j].length();
+                j++;
+            }
+           if(j==n||(j-i)==1){
+               string s="";
+               for(int p=i;p<j;p++){
+                   s+=words[p];
+                   if(p!=j-1)
+                   s+=' ';
+               }
+               int ts=maxWidth-s.size();
+               for(int k=0;k<ts;k++){
+                   s+=' ';
+               }
+               res.push_back(s);
+               i=j-1;
+           }
+           else{
+             int tw=j-i;
+             int ts=maxWidth-wc;
+             int es=ts/(tw-1);
+             int extra=ts%(tw-1);
+             string s="";
+             for(int p=i;p<j;p++){
+                 s+=words[p];
+                 if(extra>0){
+                    s+=' ';
+                    extra--;
+                 }
+                 if(p!=j-1){
+                for(int k=0;k<es;k++){
+                   s+=' ';
+               }
+                 }
+             }
+             res.push_back(s);
+              i=j-1;
+           }
+           i++;
+        }
+        return res;
+    }
+};
+class Solution {
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> res = new ArrayList<>();
+        int n = words.length;
+        int i = 0;
+        while (i < n) {
+            int j = i + 1;
+            int c = words[i].length();
+            int wc = words[i].length();
+            while (j < n && c + words[j].length() + 1 <= maxWidth) {
+                c += words[j].length() + 1;
+                wc += words[j].length();
+                j++;
+            }
+            if (j == n || j - i == 1) {
+                StringBuilder s = new StringBuilder();
+                for (int p = i; p < j; p++) {
+                    s.append(words[p]);
+                    if (p != j - 1)
+                        s.append(' ');
+                }
+                int ts = maxWidth - s.length();
+                for (int k = 0; k < ts; k++) {
+                    s.append(' ');
+                }
+                res.add(s.toString());
+                i = j - 1;
+            } else {
+                int tw = j - i;
+                int ts = maxWidth - wc;
+                int es = ts / (tw - 1);
+                int extra = ts % (tw - 1);
+                StringBuilder s = new StringBuilder();
+                for (int p = i; p < j; p++) {
+                    s.append(words[p]);
+                    if (extra > 0) {
+                        s.append(' ');
+                        extra--;
+                    }
+                    if (p != j - 1) {
+                        for (int k = 0; k < es; k++) {
+                            s.append(' ');
+                        }
+                    }
+                }
+                res.add(s.toString());
+                i = j - 1;
+            }
+            i++;
+        }
+        return res;
+    }
+}
+class Solution:
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        res = []
+        n = len(words)
+        i = 0
+        while i < n:
+            j = i + 1
+            c = len(words[i])
+            wc = len(words[i])
+            while j < n and c + len(words[j]) + 1 <= maxWidth:
+                c += len(words[j]) + 1
+                wc += len(words[j])
+                j += 1
+            if j == n or j - i == 1:
+                s = ' '.join(words[i:j])
+                ts = maxWidth - len(s)
+                s += ' ' * ts
+                res.append(s)
+                i = j
+            else:
+                tw = j - i
+                ts = maxWidth - wc
+                es = ts // (tw - 1)
+                extra = ts % (tw - 1)
+                s = ''
+                for p in range(i, j):
+                    s += words[p]
+                    if extra > 0:
+                        s += ' '
+                        extra -= 1
+                    if p != j - 1:
+                        s += ' ' * es
+                res.append(s)
+                i = j
+            i += 1
+        return res
+
+public class Solution {
+    public IList<string> FullJustify(string[] words, int maxWidth) {
+        List<string> res = new List<string>();
+        int n = words.Length;
+        int i = 0;
+        while (i < n) {
+            int j = i + 1;
+            int c = words[i].Length;
+            int wc = words[i].Length;
+            while (j < n && c + words[j].Length + 1 <= maxWidth) {
+                c += words[j].Length + 1;
+                wc += words[j].Length;
+                j++;
+            }
+            if (j == n || j - i == 1) {
+                StringBuilder s = new StringBuilder();
+                for (int p = i; p < j; p++) {
+                    s.Append(words[p]);
+                    if (p != j - 1)
+                        s.Append(' ');
+                }
+                int ts = maxWidth - s.Length;
+                s.Append(' ', ts);
+                res.Add(s.ToString());
+                i = j;
+            } else {
+                int tw = j - i;
+                int ts = maxWidth - wc;
+                int es = ts / (tw - 1);
+                int extra = ts % (tw - 1);
+                StringBuilder s = new StringBuilder();
+                for (int p = i; p < j; p++) {
+                    s.Append(words[p]);
+                    if (extra > 0) {
+                        s.Append(' ');
+                        extra--;
+                    }
+                    if (p != j - 1) {
+                        s.Append(' ', es);
+                    }
+                }
+                res.Add(s.ToString());
+                i = j;
+            }
+            i++;
+        }
+        return res;
+    }
+}
